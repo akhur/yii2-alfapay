@@ -1,6 +1,6 @@
 <?php
 
-namespace akhur0286\alfapay\models;
+namespace akhur\alfapay\models;
 
 use pantera\yii2\pay\sberbank\Module;
 use Yii;

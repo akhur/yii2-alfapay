@@ -1,8 +1,8 @@
 <?php
 
-namespace akhur0286\alfapay\controllers;
+namespace akhur\alfapay\controllers;
 
-use akhur0286\alfapay\models\AlfapayInvoice;
+use akhur\alfapay\models\AlfapayInvoice;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -15,11 +15,11 @@ class PaymentController extends \yii\web\Controller
     {
         return [
             'result-payment' => [
-                'class' => '\akhur0286\alfapay\actions\BaseAction',
+                'class' => '\akhur\alfapay\actions\BaseAction',
                 'callback' => [$this, 'resultCallback'],
             ],
             'error-payment' => [
-                'class' => '\akhur0286\alfapay\actions\BaseAction',
+                'class' => '\akhur\alfapay\actions\BaseAction',
                 'callback' => [$this, 'failCallback'],
             ],
         ];

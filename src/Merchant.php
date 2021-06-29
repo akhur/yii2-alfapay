@@ -1,8 +1,8 @@
 <?php
 
-namespace akhur0286\alfapay;
+namespace akhur\alfapay;
 
-use akhur0286\alfapay\models\AlfapayInvoice;
+use akhur\alfapay\models\AlfapayInvoice;
 use Yii;
 use yii\base\BaseObject;
 use yii\base\ErrorException;

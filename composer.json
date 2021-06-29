@@ -1,5 +1,5 @@
 {
-    "name": "akhur0286/yii2-alfapay",
+    "name": "akhur/yii2-alfapay",
     "description": "Библиотека для приема платежей через Альфабанк.",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","alfabank pay"],
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "akhur0286\\alfapay\\": "src"
+            "akhur\\alfapay\\": "src"
         }
     }
 }

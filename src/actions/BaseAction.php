@@ -1,6 +1,6 @@
 <?php
 
-namespace akhur0286\alfapay\actions;
+namespace akhur\alfapay\actions;
 
 use yii\base\Action;
 use yii\base\InvalidConfigException;

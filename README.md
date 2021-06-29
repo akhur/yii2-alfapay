@@ -23,7 +23,7 @@ php composer.phar require akhur/yii2-alfapay "dev-master"
 [
     'components' => [
         'alfapay' => [
-            'class' => 'akhur0286\alfapay\Merchant',
+            'class' => 'akhur\alfapay\Merchant',
             'sessionTimeoutSecs' => 60 * 60 * 24 * 7,
             'merchantLogin' => '',
             'merchantPassword' => '',
@@ -51,11 +51,11 @@ class PaymentController extends \yii\web\Controller
     {
         return [
             'result-payment' => [
-                'class' => '\akhur0286\alfapay\actions\BaseAction',
+                'class' => '\akhur\alfapay\actions\BaseAction',
                 'callback' => [$this, 'resultCallback'],
             ],
             'error-payment' => [
-                'class' => '\akhur0286\alfapay\actions\BaseAction',
+                'class' => '\akhur\alfapay\actions\BaseAction',
                 'callback' => [$this, 'failCallback'],
             ],
         ];
