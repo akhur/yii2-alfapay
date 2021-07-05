@@ -32,14 +32,14 @@ class Merchant extends BaseObject
      * @var string Url адрес страницы для возврата с платежного шлюза
      * необходимо указывать без host
      */
-    public $returnUrl = '/sberbank/result';
+    public $returnUrl = '/alfabank/result';
 
 
     /**
      * @var string Url адрес страницы ошибки оплаты
      * необходимо указывать без host
      */
-    public $failUrl = '/sberbank/fail';
+    public $failUrl = '/alfabank/fail';
 
     /**
      * @var string Адрес платежного шлюза
@@ -59,6 +59,11 @@ class Merchant extends BaseObject
     public $orderModel;
 
     /**
+     * @var string Суффикс в номере заказа, чтобы не было дублей, если не будет то будет браться название orderModel
+     */
+    public $suffix;
+
+    /**
      * Создание оплаты редеректим в шлюз сберабнка
      * @param $orderID - id заказа
      * @param $sum - сумма заказа
@@ -70,14 +75,14 @@ class Merchant extends BaseObject
     {
         $relatedModel = $this->getRelatedModel();
 
-        $invoice = AlfapayInvoice::findOne(['related_id' => $orderID . '-' . $relatedModel, 'related_model' => $relatedModel]);
+        $invoice = AlfapayInvoice::findOne(['related_id' => $orderID . '-' . $this->getNumberSuffix(), 'related_model' => $relatedModel]);
 
         if ($invoice) {
             return Yii::$app->response->redirect($invoice->url);
         }
 
         $data = [
-            'orderNumber' => $orderID . '-' . $relatedModel,
+            'orderNumber' => $orderID . '-' . $this->getNumberSuffix(),
             'amount' => $sum * 100,
             'returnUrl' => Url::to($this->returnUrl, true),
             'failUrl' => Url::to($this->failUrl, true),
@@ -97,7 +102,7 @@ class Merchant extends BaseObject
         $orderId = $response['orderId'];
         $formUrl = $response['formUrl'];
 
-        AlfapayInvoice::addAlfabank($orderID, $this->relatedModel, $orderId, $formUrl, $data);
+        AlfapayInvoice::addAlfabank($orderID, $this->getNumberSuffix(), $this->getRelatedModel(), $orderId, $formUrl, $data);
 
         return Yii::$app->response->redirect($formUrl);
     }
@@ -162,6 +167,14 @@ class Merchant extends BaseObject
     public function getRelatedModel()
     {
         return strtolower(yii\helpers\StringHelper::basename($this->orderModel));
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumberSuffix()
+    {
+        return $this->suffix ? $this->suffix : $this->getRelatedModel();
     }
 
     /**
