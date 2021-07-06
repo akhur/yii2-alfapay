@@ -104,7 +104,7 @@ class Merchant extends BaseObject
 
         AlfapayInvoice::addAlfabank($orderID, $this->getNumberSuffix(), $this->getRelatedModel(), $orderId, $formUrl, $data);
 
-        return Yii::$app->response->redirect($formUrl);
+        return $formUrl;
     }
 
     public function continue($orderID, $sum)
