@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m210615_063719_alfapay_invoice
  */
-class m210706_104323_indexes extends Migration
+class m210706_104323_indexes_alfapay extends Migration
 {
     /**
      * @inheritdoc
