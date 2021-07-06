@@ -78,7 +78,7 @@ class Merchant extends BaseObject
         $invoice = AlfapayInvoice::findOne(['related_id' => $orderID . '-' . $this->getNumberSuffix(), 'related_model' => $relatedModel]);
 
         if ($invoice) {
-            return Yii::$app->response->redirect($invoice->url);
+            return $invoice->url;
         }
 
         $data = [
